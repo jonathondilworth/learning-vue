@@ -1,50 +1,45 @@
 export default {
     components: {},
     template: `
-    <p> 
-        <input type="text" v-model="greeting" />
-    </p>
-    <p>
-        {{ greeting }} ({{ greeting.length }})
-    </p>
-    <p>
-        <!-- directives -->
-        <!-- :class="exprs" is shorthand for v-bind:class="exprs" -->
-        <!-- v-on:click, shorthand is @click="methodName" -->
-        <!-- listeners: @click, etc is similar, see example -->
-        <button
-            :class="buttonClass"
-            @click="setRandomFallacyGreeting()"
-        >Click Me</button>
-    </p>
+        <p>Welcome to the new {{ app }}!</p>
     `,
     data() {
         return {
-            greeting: 'Hello World!',
-            fallacies: [
-                'The network is reliable.',
-                'Latency is zero.',
-                'Bandwidth is infinite.',
-                'The network is secure',
-                'The network topology doesn\'t change',
-                'There is only one network administrator',
-                'Transport costs are zero',
-                'The network is homogeneous',
-            ],
-            buttonClass: "text-blue-600",
+            app: "Application Name",
         };
     },
+    beforeCreate() {
+        console.log("Lifecycle hook: beforeCreate.");
+    },
+    created() {
+        console.log("Lifecycle hook: created.");
+    },
+    beforeMount() {
+        console.log("Lifecycle hook: beforeMount.");
+    },
     mounted() {
-        setTimeout(() => {
-            this.setRandomFallacyGreeting();
-        }, 1500);
+        console.log("Lifecycle hook: mounted.");
+    },
+    beforeUpdate() {
+        console.log("Lifecycle hook: beforeUpdate.");
+    },
+    updated() {
+        console.log("Lifecycle hook: updated.");
+    },
+    beforeUnmount() {
+        console.log("Lifecycle hook: beforeUnmount.");
+    },
+    unmounted() {
+        console.log("Lifecycle hook: unmounted.");
     },
     methods: {
-        setRandomFallacyGreeting() {
-            this.greeting = this.generateRandomFallacy();
+        myCustomMethod() {
+            let result = "stuff goes here...";
+            console.log(result);
+            return result;
         },
-        generateRandomFallacy() {
-            return this.fallacies[Math.floor(Math.random() * this.fallacies.length)];
-        }
-    }
+        oneMoreMethod() {
+            return null;
+        },
+    },
 }
