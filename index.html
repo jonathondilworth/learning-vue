@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="app">
+        <p>
+            <!-- v-model is binding the input to the apps single source of truth (data) -->
+            <!-- & is also listening to changes and updating the associated value  within the vue app -->
+            <input type="text" v-model="greeting" />
+        </p>
+        <p>
+            {{ greeting }} ({{ greeting.length }})
+        </p>
+    </div>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    greeting: 'hello world',
+                };
+            },
+        }).mount('#app');
+    </script>
+</body>
+</html>
