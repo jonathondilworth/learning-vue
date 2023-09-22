@@ -9,23 +9,11 @@
 </head>
 <body>
     <div id="app">
-        <p>
-            <!-- v-model is binding the input to the apps single source of truth (data) -->
-            <!-- & is also listening to changes and updating the associated value  within the vue app -->
-            <input type="text" v-model="greeting" />
-        </p>
-        <p>
-            {{ greeting }} ({{ greeting.length }})
-        </p>
+        
     </div>
-    <script>
-        Vue.createApp({
-            data() {
-                return {
-                    greeting: 'hello world',
-                };
-            },
-        }).mount('#app');
+    <script type="module">
+        import App from "./js/App.js";
+        Vue.createApp(App).mount('#app');
     </script>
 </body>
 </html>
