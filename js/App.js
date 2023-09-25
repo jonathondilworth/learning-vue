@@ -1,5 +1,7 @@
+import AppButton from "./components/AppButton.js";
+
 export default {
-    components: {},
+    components: { AppButton },
     template: `
     <section v-show="filterAssignments.incomplete.length">
         <h2 class="font-bold mb-2">In Progress</h2>
@@ -37,6 +39,13 @@ export default {
             </li>
         </ul>
 
+    </section>
+
+    <section>
+        <app-button 
+            :processing="false" 
+            type="secondary"
+        >Hello Button</app-button>
     </section>
     `,
     data() {
