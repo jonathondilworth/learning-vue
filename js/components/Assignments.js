@@ -23,12 +23,13 @@ export default {
     data() {
         return {
             app: "Assignments App",
-            assignments: [
-                { id: 1, name: 'Assignment One', complete: false, tag: "math" },
-                { id: 2, name: 'Assignment Two', complete: false, tag: "science" },
-                { id: 3, name: 'One More Assignment', complete: false, tag: "math" },
-            ],
+            assignments: [],
         };
+    },
+    created() {
+        fetch("http://localhost:3002/assignments")
+            .then(response => response.json())
+            .then(assignments => this.assignments = assignments);
     },
     computed: {
         filterAssignments() {
