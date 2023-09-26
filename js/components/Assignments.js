@@ -1,28 +1,32 @@
 import AssignmentList from "./AssignmentList.js";
+import AssignmentCreate from "./AssignmentCreate.js";
 
 export default {
-    components: { AssignmentList },
+    components: { AssignmentList, AssignmentCreate },
     template: `
-    
-    <assignment-list 
-        title="In Progress"
-        :assignments="filterAssignments.incomplete"
-    ></assignment-list>
+    <section class="space-y-8">
 
-    <assignment-list 
-        title="Completed"
-        :assignments="filterAssignments.completed"
-        class="mt-8"
-    ></assignment-list>
+        <assignment-list 
+            title="In Progress"
+            :assignments="filterAssignments.incomplete"
+        ></assignment-list>
 
+        <assignment-list 
+            title="Completed"
+            :assignments="filterAssignments.completed"
+        ></assignment-list>
+
+        <assignment-create @add="add"></assignment-create>
+
+    </section>
     `,
     data() {
         return {
-            app: "Application Name",
+            app: "Assignments App",
             assignments: [
-                { id: 1, name: 'Assignment One', complete: false },
-                { id: 2, name: 'Assignment Two', complete: false },
-                { id: 3, name: 'One More Assignment', complete: false },
+                { id: 1, name: 'Assignment One', complete: false, tag: "math" },
+                { id: 2, name: 'Assignment Two', complete: false, tag: "science" },
+                { id: 3, name: 'One More Assignment', complete: false, tag: "math" },
             ],
         };
     },
@@ -34,4 +38,14 @@ export default {
             };
         },
     },
+    methods: {
+        add(name) {
+            this.assignments.push({
+                id: this.assignments.length + 1,
+                name: name,
+                complete: false,
+                tag: "all",
+            });
+        },
+    }
 }
