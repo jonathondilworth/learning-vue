@@ -22,5 +22,5 @@ export default {
             this.$emit('add', this.newAssignment);
             this.newAssignment = "";
         },
-    }
+    },
 }

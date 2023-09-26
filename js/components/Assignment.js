@@ -11,6 +11,6 @@ export default {
     props: {
         assignment: {
             type: Object,
-        }
-    }
+        },
+    },
 }

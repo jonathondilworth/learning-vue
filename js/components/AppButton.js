@@ -22,9 +22,6 @@ export default {
         processing: {
             type: Boolean,
             default: false,
-        }
+        },
     },
-    computed: {
-
-    }
 }

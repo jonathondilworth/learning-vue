@@ -47,5 +47,5 @@ export default {
                 tag: "all",
             });
         },
-    }
+    },
 }
