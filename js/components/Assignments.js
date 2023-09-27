@@ -6,9 +6,11 @@ export default {
     template: `
     <section class="flex gap-8">
 
-        <assignment-list title="In Progress" :assignments="filterAssignments.incomplete">
+        <assignment-list title="Today" :assignments="filterAssignments.incomplete">
             <assignment-create @add="add"></assignment-create>
         </assignment-list>
+
+        <!-- TODO: refactor and add a tomorrow list -->
 
         <!-- if you want to handle showCompleted @ parent level -->
         <div v-show="showCompleted">
@@ -34,11 +36,17 @@ export default {
             .then(response => response.json())
             .then(assignments => this.assignments = assignments);
     },
+    // mounted() {
+    //     this.assignments.push([
+    //         { id: 7, name: "Tomorrows Worries", complete: false, tag: "tomorrow" }
+    //     ]);
+    // },
     computed: {
         filterAssignments() {
             return {
                 incomplete: this.assignments.filter(x => !x.complete),
                 completed: this.assignments.filter(x => x.complete),
+                tomorrow: this.assignments.filter(x => x.tag === "tomorrow"),
             };
         },
     },
