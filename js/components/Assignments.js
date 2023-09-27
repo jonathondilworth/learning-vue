@@ -4,19 +4,21 @@ import AssignmentCreate from "./AssignmentCreate.js";
 export default {
     components: { AssignmentList, AssignmentCreate },
     template: `
-    <section class="space-y-8">
+    <section class="flex gap-8">
 
-        <assignment-list 
-            title="In Progress"
-            :assignments="filterAssignments.incomplete"
-        ></assignment-list>
+        <assignment-list title="In Progress" :assignments="filterAssignments.incomplete">
+            <assignment-create @add="add"></assignment-create>
+        </assignment-list>
 
-        <assignment-list 
-            title="Completed"
-            :assignments="filterAssignments.completed"
-        ></assignment-list>
-
-        <assignment-create @add="add"></assignment-create>
+        <!-- if you want to handle showCompleted @ parent level -->
+        <div v-show="showCompleted">
+            <assignment-list 
+                title="Completed" 
+                :assignments="filterAssignments.completed"
+                can-toggle
+                @toggle="showCompleted = !showCompleted"
+            ></assignment-list>
+        </div>
 
     </section>
     `,
@@ -24,6 +26,7 @@ export default {
         return {
             app: "Assignments App",
             assignments: [],
+            showCompleted: true,
         };
     },
     created() {
@@ -41,6 +44,9 @@ export default {
     },
     methods: {
         add(name) {
+            if (!name) {
+                return;
+            }
             this.assignments.push({
                 id: this.assignments.length + 1,
                 name: name,

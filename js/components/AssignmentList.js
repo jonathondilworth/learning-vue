@@ -4,11 +4,18 @@ import AssignmentTags from "./AssignmentTags.js";
 export default {
     components: { Assignment, AssignmentTags },
     template: `
-    <section v-show="assignments.length">
-        <h2 class="font-bold mb-2">
-            {{ title }}
-            <span>({{ tagFilteredAssignments.length }})</span>    
-        </h2>
+    <section v-show="show && assignments.length" class="w-60">
+
+        <div class="flex justify-between items-start">
+
+            <h2 class="font-bold mb-2">
+                {{ title }}
+                <span>({{ tagFilteredAssignments.length }})</span>    
+            </h2>
+
+            <button v-show="canToggle" @click="toggleList()">&times;</button>
+
+        </div>
 
         <assignment-tags
             class="mt-1"
@@ -24,11 +31,14 @@ export default {
             ></assignment>
         </ul>
 
+        <slot></slot>
+
     </section>
     `,
     data() {
         return {
             currentTag: 'all',
+            show: true,
         };
     },
     props: {
@@ -37,6 +47,16 @@ export default {
         },
         assignments: {
             type: Array,
+        },
+        canToggle: {
+            type: Boolean,
+            default: false,
+        },
+    },
+    methods: {
+        toggleList() {
+            this.show = !this.show;
+            this.$emit('toggle');
         },
     },
     computed: {
