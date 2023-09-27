@@ -17,6 +17,24 @@
       "name": "One More Assignment", 
       "complete": false,
       "tag": "math"
+    },
+    { 
+      "id": 4,
+      "name": "Incomplete Assignment", 
+      "complete": false,
+      "tag": "math"
+    },
+    { 
+      "id": 5,
+      "name": "Completed Assignment", 
+      "complete": true,
+      "tag": "science"
+    },
+    { 
+      "id": 5,
+      "name": "Yet Another Task", 
+      "complete": true,
+      "tag": "tech"
     }
   ]
 }
